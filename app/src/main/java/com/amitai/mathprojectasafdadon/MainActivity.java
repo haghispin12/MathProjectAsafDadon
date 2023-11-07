@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView text3;
     private EditText answer;
     private Button Check;
+    private Exercise E;
     int num1;
     int num2;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         multiTable = findViewById(R.id.multitable);
         answer = findViewById(R.id.answer);
         check = findViewById(R.id.check);
+        E = new Exercise();
         setOnClickListener();
     }
 
@@ -55,36 +57,27 @@ public void setOnClickListener(){
   challenge.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          Random random1=new Random();
-          Random random2=new Random();
-          num1 = random1.nextInt(9)+1;
-          num2 = random2.nextInt(90)+10;
-          text1.setText(num1 +"");
-          text3.setText(num2 +"");
+          E.challenge();
+          text1.setText(E.getNum1() +"");
+          text3.setText(E.getNum2() +"");
       }
   });
 
   multi20.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          Random random1=new Random();
-          Random random2=new Random();
-          num1 = random1.nextInt(9)+1;
-          num2 = random2.nextInt(10)+10;
-          text1.setText(num1 +"");
-          text3.setText(num2 +"");
+          E.multi20();
+          text1.setText(E.getNum1() +"");
+          text3.setText(E.getNum2() +"");
       }
   });
 
   multiTable.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          Random random1=new Random();
-          Random random2=new Random();
-          num1 = random1.nextInt(9)+1;
-          num2 = random2.nextInt(9)+1;
-          text1.setText(num1 +"");
-          text3.setText(num2 +"");
+          E.multiTable();
+          text1.setText(E.getNum1() +"");
+          text3.setText(E.getNum2() +"");
       }
   });
 
@@ -92,7 +85,7 @@ public void setOnClickListener(){
       @Override
       public void onClick(View v) {
           int num = Integer.parseInt(answer.getText().toString());
-          if(num1*num2==num)
+          if(E.check(num))
               showToast("good job");
           else
               showToast("you failed");
@@ -101,13 +94,6 @@ public void setOnClickListener(){
   });
 
 }
-
-
-
-
-
-
-
 }
 
 
