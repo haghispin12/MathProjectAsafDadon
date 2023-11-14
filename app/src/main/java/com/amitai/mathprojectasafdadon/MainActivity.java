@@ -1,6 +1,8 @@
 package com.amitai.mathprojectasafdadon;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
 
-
+    MainViewModel mainViewModel;
     private Button challenge;
     private Button multi20;
     private Button multiTable;
@@ -34,6 +36,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mainViewModel.vNum2.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                text1.setText(integer);
+            }
+        });
+        mainViewModel.vNum1.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                text3.setText(integer);
+            }
+        });
+
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         challenge = findViewById(R.id.challege);
@@ -57,9 +78,7 @@ public void setOnClickListener(){
   challenge.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          E.challenge();
-          text1.setText(E.getNum1() +"");
-          text3.setText(E.getNum2() +"");
+          mainViewModel.challenge();
       }
   });
 
