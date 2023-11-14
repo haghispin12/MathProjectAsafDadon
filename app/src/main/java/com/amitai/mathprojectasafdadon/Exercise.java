@@ -5,7 +5,6 @@ import java.util.Random;
 public class Exercise {
     private int num1;
     private int num2;
-    private int result;
 
     public Exercise(){
 

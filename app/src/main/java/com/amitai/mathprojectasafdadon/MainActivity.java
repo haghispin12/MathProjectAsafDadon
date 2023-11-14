@@ -89,7 +89,7 @@ public void setOnClickListener(){
               showToast("good job");
           else
               showToast("you failed");
-          answer.setText(" ");
+          answer.setText("");
       }
   });
 
