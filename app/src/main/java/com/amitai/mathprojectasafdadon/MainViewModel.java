@@ -23,6 +23,26 @@ public class MainViewModel extends ViewModel {
         vNum2.setValue(E.getNum2());
     }
 
+    public void multi20(){
+        E.multi20();
+        vNum1.setValue(E.getNum1());
+        vNum2.setValue(E.getNum2());
+    }
+
+    public void multitable(){
+        E.multiTable();
+        vNum1.setValue(E.getNum1());
+        vNum2.setValue(E.getNum2());
+    }
+
+    public boolean check(int num){
+        return E.check(num);
+    }
+
+
+
+
+
 
 
 

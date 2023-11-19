@@ -1,5 +1,4 @@
 package com.amitai.mathprojectasafdadon;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,13 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
-
 public class MainActivity extends AppCompatActivity {
-
     private void showToast (String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
-
     MainViewModel mainViewModel;
     private Button challenge;
     private Button multi20;
@@ -29,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView text3;
     private EditText answer;
     private Button Check;
-    private Exercise E;
+    //private Exercise E;
     int num1;
     int num2;
 
@@ -41,20 +37,16 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.vNum2.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                text1.setText(integer);
+
+                text1.setText(integer+"");
             }
         });
         mainViewModel.vNum1.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                text3.setText(integer);
+                text3.setText(integer+"");
             }
         });
-
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         challenge = findViewById(R.id.challege);
@@ -64,17 +56,9 @@ public class MainActivity extends AppCompatActivity {
         multiTable = findViewById(R.id.multitable);
         answer = findViewById(R.id.answer);
         check = findViewById(R.id.check);
-        E = new Exercise();
         setOnClickListener();
     }
-
-
-
 public void setOnClickListener(){
-
-
-
-
   challenge.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -84,27 +68,19 @@ public void setOnClickListener(){
 
   multi20.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v) {
-          E.multi20();
-          text1.setText(E.getNum1() +"");
-          text3.setText(E.getNum2() +"");
-      }
+      public void onClick(View v) {mainViewModel.multi20();}
   });
 
   multiTable.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v) {
-          E.multiTable();
-          text1.setText(E.getNum1() +"");
-          text3.setText(E.getNum2() +"");
-      }
+      public void onClick(View v) { mainViewModel.multitable(); }
   });
 
   check.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
           int num = Integer.parseInt(answer.getText().toString());
-          if(E.check(num))
+          if(mainViewModel.check(num))
               showToast("good job");
           else
               showToast("you failed");

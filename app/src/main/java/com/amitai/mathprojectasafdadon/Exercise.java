@@ -1,15 +1,9 @@
 package com.amitai.mathprojectasafdadon;
-
 import java.util.Random;
-
 public class Exercise {
     private int num1;
     private int num2;
-
-    public Exercise(){
-
-    }
-
+    public Exercise(){}
     public void challenge(){
         Random random1=new Random();
         Random random2=new Random();
