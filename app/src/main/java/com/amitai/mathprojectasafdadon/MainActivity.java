@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
     MainViewModel mainViewModel;
+    private User user;
     private Button challenge;
     private Button multi20;
     private Button multiTable;
@@ -32,33 +34,41 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mainViewModel.vNum2.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-
-                text1.setText(integer+"");
-            }
-        });
-        mainViewModel.vNum1.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                text3.setText(integer+"");
-            }
-        });
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        challenge = findViewById(R.id.challege);
-        text1 = findViewById(R.id.text1);
-        text3 = findViewById(R.id.text3);
-        multi20 = findViewById(R.id.multi20);
-        multiTable = findViewById(R.id.multitable);
-        answer = findViewById(R.id.answer);
-        check = findViewById(R.id.check);
+
+        Intent intent = getIntent();
+       String userName = intent.getStringExtra("username");
+       showToast("Hellow " + userName);
+       user=new User(userName);
+
+
         setOnClickListener();
     }
 public void setOnClickListener(){
+    setContentView(R.layout.activity_main);
+    challenge = findViewById(R.id.challege);
+    text1 = findViewById(R.id.text1);
+    text3 = findViewById(R.id.text3);
+    multi20 = findViewById(R.id.multi20);
+    multiTable = findViewById(R.id.multitable);
+    answer = findViewById(R.id.answer);
+    check = findViewById(R.id.check);
+
+    mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+    mainViewModel.vNum2.observe(this, new Observer<Integer>() {
+        @Override
+        public void onChanged(Integer integer) {
+
+            text1.setText(integer+"");
+        }
+    });
+    mainViewModel.vNum1.observe(this, new Observer<Integer>() {
+        @Override
+        public void onChanged(Integer integer) {
+            text3.setText(integer+"");
+        }
+    });
+
   challenge.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

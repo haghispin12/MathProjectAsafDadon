@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="400dp"
+        android:layout_width="410dp"
         android:layout_height="60dp"
         android:text="Math excercises"
         android:textSize="30sp"
@@ -28,32 +28,34 @@
 
         <Button
             android:id="@+id/challege"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="33"
             android:layout_height="100dp"
-            android:layout_gravity="left"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="1dp"
             android:layout_marginBottom="2dp"
             android:text="challenge"
             android:textSize="10sp" />
 
         <Button
             android:id="@+id/multi20"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="33"
             android:layout_height="100dp"
             android:text="Multiply up to 20"
             android:textSize="10sp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:layout_marginBottom="2dp"
             android:layout_gravity="center"
             />
 
         <Button
             android:id="@+id/multitable"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="33"
             android:layout_height="100dp"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
             android:text="Multiplication table"
             android:textSize="10sp"
