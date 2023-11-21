@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
     MainViewModel mainViewModel;
-    private User user;
     private Button challenge;
     private Button multi20;
     private Button multiTable;
@@ -27,9 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView text3;
     private EditText answer;
     private Button Check;
-    //private Exercise E;
-    int num1;
-    int num2;
 
 
     @Override
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
        String userName = intent.getStringExtra("username");
        showToast("Hellow " + userName);
-       user=new User(userName);
+
 
 
         setOnClickListener();
@@ -91,9 +87,7 @@ public void setOnClickListener(){
       public void onClick(View v) {
           int num = Integer.parseInt(answer.getText().toString());
           if(mainViewModel.check(num))
-              showToast("good job");
-          else
-              showToast("you failed");
+              showToast(mainViewModel.getAnswer());
           answer.setText("");
       }
   });
