@@ -63,15 +63,6 @@ public void setOnClickListener(){
     check = findViewById(R.id.check);
     rate = findViewById(R.id.rate);
 
-    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    int myRate = result.getData().getIntExtra("rate",-1);
-                }
-            });
-
-
             mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
     mainViewModel.vNum2.observe(this, new Observer<Integer>() {
         @Override
@@ -113,6 +104,18 @@ public void setOnClickListener(){
           answer.setText("");
       }
   });
+
+
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int myRate = result.getData().getIntExtra("rate",-1);
+                    showToast(myRate+"");
+                }
+            });
+
+
 
   rate.setOnClickListener(new View.OnClickListener() {
       @Override

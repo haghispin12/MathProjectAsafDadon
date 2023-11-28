@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 
@@ -21,14 +22,19 @@ private Button save;
     private void Main(){
         sb = findViewById(R.id.SeekBar);
         save = findViewById(R.id.save);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("rate", sb.getProgress());
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
     }
 
-    public void save(){
-        Intent intent = new Intent();
-        intent.putExtra("rate", sb.getProgress());
-        setResult(RESULT_OK,intent);
-        finish();
-    }
+
 
 
 }
