@@ -21,12 +21,14 @@ private Button save;
     private void Main(){
         sb = findViewById(R.id.SeekBar);
         save = findViewById(R.id.save);
+    }
+
+    public void save(){
         Intent intent = new Intent();
         intent.putExtra("rate", sb.getProgress());
         setResult(RESULT_OK,intent);
         finish();
     }
-
 
 
 }
