@@ -1,4 +1,9 @@
 package com.amitai.mathprojectasafdadon;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
+
+import javax.xml.transform.Result;
+
 public class MainActivity extends AppCompatActivity {
     private void showToast (String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
@@ -26,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView text3;
     private EditText answer;
     private Button Check;
+    private Button rate;
+
 
 
     @Override
@@ -35,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
        String userName = intent.getStringExtra("username");
        showToast("Hellow " + userName);
-
-
-
         setOnClickListener();
+       mainViewModel.setName(userName);
+
+
+
+
     }
 public void setOnClickListener(){
     setContentView(R.layout.activity_main);
@@ -49,8 +61,18 @@ public void setOnClickListener(){
     multiTable = findViewById(R.id.multitable);
     answer = findViewById(R.id.answer);
     check = findViewById(R.id.check);
+    rate = findViewById(R.id.rate);
 
-    mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    int myRate = result.getData().getIntExtra("rate",-1);
+                }
+            });
+
+
+            mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
     mainViewModel.vNum2.observe(this, new Observer<Integer>() {
         @Override
         public void onChanged(Integer integer) {
@@ -86,9 +108,17 @@ public void setOnClickListener(){
       @Override
       public void onClick(View v) {
           int num = Integer.parseInt(answer.getText().toString());
-          if(mainViewModel.check(num))
-              showToast(mainViewModel.getAnswer());
+          mainViewModel.check(num);
+          showToast(mainViewModel.getAnswer());
           answer.setText("");
+      }
+  });
+
+  rate.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          Intent intent = new Intent(MainActivity.this, RateActivity.class);
+          activityResultLauncher.launch(intent);
       }
   });
 

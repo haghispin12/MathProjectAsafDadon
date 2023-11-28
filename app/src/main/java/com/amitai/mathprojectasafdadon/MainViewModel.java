@@ -14,18 +14,13 @@ public class MainViewModel extends ViewModel {
       vNum1 = new MutableLiveData<>();
       vNum2 = new MutableLiveData<>();
       E=new Exercise();
-
-
-
     }
-
     public void challenge(){
         score=20;
         E.challenge();
         vNum1.setValue(E.getNum1());
         vNum2.setValue(E.getNum2());
     }
-
     public void multi20(){
         score=10;
         E.multi20();
@@ -39,21 +34,18 @@ public class MainViewModel extends ViewModel {
         vNum1.setValue(E.getNum1());
         vNum2.setValue(E.getNum2());
     }
-
     public boolean check(int num){
-        user.addScore(score);
         if(E.check(num)) {
+            user.addScore(score);
             answer = "good job";
             return true;
         }
         answer="you failed";
         return false;
     }
-
-    public void getName(String name){
+    public void setName(String name){
         user=new User(name);
     }
-
 
     public String getAnswer() {
         return answer;
