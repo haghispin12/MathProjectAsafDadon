@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
-public class RateActivity extends AppCompatActivity {
+public class RateActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 private SeekBar sb;
 private Button save;
+private TextView num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,9 @@ private Button save;
     private void Main(){
         sb = findViewById(R.id.SeekBar);
         save = findViewById(R.id.save);
+        num = findViewById(R.id.num);
+
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +40,18 @@ private Button save;
     }
 
 
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        num.setText(progress+"");
+    }
 
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
 }
