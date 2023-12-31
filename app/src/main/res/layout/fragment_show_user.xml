@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ShowUser"
     android:orientation="vertical"
-    android:layout_gravity="center"
-
+    android:gravity="center_horizontal"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="@color/white"
     >
 
     <LinearLayout
@@ -15,17 +17,19 @@
         android:orientation="horizontal"
         >
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="name"
-        ></EditText>
+            android:textSize="25sp"
+        ></TextView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="score"
             android:layout_marginLeft="10dp"
+            android:textSize="20sp"
             ></TextView>
 
         <TextView
@@ -33,6 +37,7 @@
             android:layout_height="wrap_content"
             android:hint="rate"
             android:layout_marginLeft="10dp"
+            android:textSize="20sp"
             ></TextView>
 
 </LinearLayout>
@@ -42,6 +47,18 @@
         android:layout_height="wrap_content"
          android:text="add picture"
         android:id="@+id/pic"
+        ></Button>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        ></ImageView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add user"
+        android:id="@+id/addUser"
         ></Button>
 
 

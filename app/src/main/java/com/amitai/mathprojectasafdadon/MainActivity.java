@@ -5,6 +5,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText answer;
     private Button Check;
     private Button rate;
+    private Button show;
 
 
 
@@ -62,6 +65,7 @@ public void setOnClickListener(){
     answer = findViewById(R.id.answer);
     check = findViewById(R.id.check);
     rate = findViewById(R.id.rate);
+    show= findViewById(R.id.show);
 
             mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
     mainViewModel.vNum2.observe(this, new Observer<Integer>() {
@@ -104,6 +108,14 @@ public void setOnClickListener(){
           answer.setText("");
       }
   });
+
+  show.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          FragmentTransaction trans = getSupportFragmentManager().beginTransaction();trans.add(R.id.frameLayout, new ShowUser());trans.commit();
+      }
+  });
+
 
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
