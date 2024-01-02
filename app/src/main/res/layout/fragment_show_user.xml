@@ -45,21 +45,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:text="add picture"
-        android:id="@+id/pic"
-        ></Button>
+        android:text="add picture"
+        android:id="@+id/addPic" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        ></ImageView>
+        android:id="@+id/photo" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="add user"
         android:id="@+id/addUser"
-        ></Button>
+        />
 
 
 
