@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 public class ShowUsersActivity extends AppCompatActivity {
 
-    int x;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
