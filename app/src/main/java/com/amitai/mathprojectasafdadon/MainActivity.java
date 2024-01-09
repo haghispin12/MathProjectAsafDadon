@@ -112,7 +112,9 @@ public void setOnClickListener(){
   show.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          FragmentTransaction trans = getSupportFragmentManager().beginTransaction();trans.add(R.id.frameLayout, new ShowUser());trans.commit();
+//          FragmentTransaction trans = getSupportFragmentManager().beginTransaction();trans.add(R.id.frameLayout, new ShowUser());trans.commit();
+          Intent intent = new Intent(MainActivity.this, ShowUsersActivity.class);
+          startActivity(intent);
       }
   });
 

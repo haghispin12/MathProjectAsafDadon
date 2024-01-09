@@ -6,7 +6,6 @@ public class User {
 
     public User(String name){
         this.name=name;
-        score=0;
     }
 
     public String getName() {
