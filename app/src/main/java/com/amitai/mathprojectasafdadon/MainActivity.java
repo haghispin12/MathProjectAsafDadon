@@ -112,9 +112,9 @@ public void setOnClickListener(){
   show.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-//          FragmentTransaction trans = getSupportFragmentManager().beginTransaction();trans.add(R.id.frameLayout, new ShowUser());trans.commit();
-          Intent intent = new Intent(MainActivity.this, ShowUsersActivity.class);
-          startActivity(intent);
+          FragmentTransaction trans = getSupportFragmentManager().beginTransaction();trans.add(R.id.frameLayout, new ShowUser());trans.commit();
+//          Intent intent = new Intent(MainActivity.this, ShowUsersActivity.class);
+//          startActivity(intent);
       }
   });
 
@@ -126,6 +126,7 @@ public void setOnClickListener(){
                 public void onActivityResult(ActivityResult result) {
                     int myRate = result.getData().getIntExtra("rate",-1);
                     showToast(myRate+"");
+                    mainViewModel.setRate(myRate);
                 }
             });
 

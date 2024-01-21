@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
@@ -22,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 
 public class ShowUser extends Fragment {
 
@@ -30,15 +33,16 @@ Uri uri;
 private ImageView photo;
 private Button addPic;
 private Button addUser;
+MainViewModel mainViewModel;
+ArrayList arr= new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_show_user, container, false);
         photo = view.findViewById(R.id.photo);
         addPic =view.findViewById(R.id.addPic);
-        main();
         addUser= view.findViewById(R.id.addUser);
-
+        main();
         return  view;
     }
 
@@ -49,6 +53,7 @@ private Button addUser;
             public void onActivityResult(ActivityResult result) {
                 if (result.getResultCode()== RESULT_OK){
                     photo.setImageURI(uri);
+                    model.setUri(uri);
                 }
             }
         });
@@ -66,6 +71,20 @@ private Button addUser;
             }
         });
 
+        addUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                model.insertUser(requireActivity());
+            }
+        });
+
+        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mainViewModel.users.observe(requireActivity(), new Observer<ArrayList>() {
+            @Override
+            public void onChanged(ArrayList arrayList) {
+                arr=arrayList;
+            }
+        });
     }
 
 

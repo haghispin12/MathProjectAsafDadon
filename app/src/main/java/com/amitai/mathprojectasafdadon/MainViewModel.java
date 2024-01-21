@@ -1,7 +1,12 @@
 package com.amitai.mathprojectasafdadon;
 
+import android.content.Context;
+import android.net.Uri;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
     String answer;
@@ -9,10 +14,12 @@ public class MainViewModel extends ViewModel {
     private User user;
     MutableLiveData<Integer> vNum1;
     MutableLiveData<Integer> vNum2;
+    MutableLiveData<ArrayList> users;
     Exercise E;
     public MainViewModel(){
       vNum1 = new MutableLiveData<>();
       vNum2 = new MutableLiveData<>();
+      users = new MutableLiveData<>();
       E=new Exercise();
     }
     public void challenge(){
@@ -49,5 +56,19 @@ public class MainViewModel extends ViewModel {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public void setRate(int rate){
+        user.setRate(rate);
+    }
+
+    public void setUri(Uri uri) {
+        user.setUri(uri);
+    }
+
+    public void insertUser(Context context){
+        DBHelper dbHelper= new DBHelper(context);
+        dbHelper.insert(user, context);
+        users.setValue(dbHelper.selectAll());
     }
 }
