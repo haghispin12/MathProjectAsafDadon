@@ -14,12 +14,12 @@ public class MainViewModel extends ViewModel {
     private User user;
     MutableLiveData<Integer> vNum1;
     MutableLiveData<Integer> vNum2;
-    MutableLiveData<ArrayList> users;
+    MutableLiveData<ArrayList<User>> users;
     Exercise E;
     public MainViewModel(){
       vNum1 = new MutableLiveData<>();
       vNum2 = new MutableLiveData<>();
-      users = new MutableLiveData<>();
+      users = new MutableLiveData<>(new ArrayList<>());
       E=new Exercise();
     }
     public void challenge(){
@@ -69,6 +69,9 @@ public class MainViewModel extends ViewModel {
     public void insertUser(Context context){
         DBHelper dbHelper= new DBHelper(context);
         dbHelper.insert(user, context);
-        users.setValue(dbHelper.selectAll());
+
+        ArrayList<User> tmp = dbHelper.selectAll();
+
+        users.setValue(tmp);
     }
 }

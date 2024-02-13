@@ -15,6 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -33,7 +35,7 @@ Uri uri;
 private ImageView photo;
 private Button addPic;
 private Button addUser;
-MainViewModel mainViewModel;
+private RecyclerView rcShowUsers;
 ArrayList arr= new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,11 +44,17 @@ ArrayList arr= new ArrayList<>();
         photo = view.findViewById(R.id.photo);
         addPic =view.findViewById(R.id.addPic);
         addUser= view.findViewById(R.id.addUser);
+        rcShowUsers = view.findViewById(R.id.rcShowUsers);
         main();
         return  view;
     }
 
     public void main(){
+
+
+
+
+
         model = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         ActivityResultLauncher<Intent> startCamera = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -57,6 +65,8 @@ ArrayList arr= new ArrayList<>();
                 }
             }
         });
+
+
 
         addPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,14 +88,27 @@ ArrayList arr= new ArrayList<>();
             }
         });
 
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mainViewModel.users.observe(requireActivity(), new Observer<ArrayList>() {
+
+        model.users.observe(requireActivity(), new Observer<ArrayList<User>>() {
             @Override
-            public void onChanged(ArrayList arrayList) {
-                arr=arrayList;
+            public void onChanged(ArrayList<User> users) {
+                arr=users;
             }
         });
+
+        UserAdapter userAdapter = new UserAdapter(arr, new UserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(User item) {
+
+            }
+        });
+
+        rcShowUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rcShowUsers.setAdapter(userAdapter);
+        rcShowUsers.setHasFixedSize(true);
+
     }
+
 
 
 
