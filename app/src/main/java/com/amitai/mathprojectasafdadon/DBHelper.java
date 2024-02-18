@@ -138,23 +138,21 @@ public class DBHelper extends SQLiteOpenHelper {
         database.close();
         return users;
     }
-//
-//    //
-//    // I prefer using this one...
-//    //
-//    public ArrayList<User> genericSelectByUserName(String userName)
-//    {
+
+    // I prefer using this one...
+///    public ArrayList<User> genericSelectByUserName(String userName)
+// /   {
 //        String[] vals = { userName };
 //        // if using the rawQuery
 //        // String query = "SELECT * FROM " + TABLE_RECORD + " WHERE " + COLUMN_NAME + " = ?";
 //        String column = COLUMN_NAME;
 //        return select(column,vals);
 //    }
-//
-//
-//    // INPUT: notice two options rawQuery should look like
-//    // rawQuery("SELECT id, name FROM people WHERE name = ? AND id = ?", new String[] {"David", "2"});
-//    // OUTPUT: arraylist - number of elements accordingly
+///
+///
+// /   // INPUT: notice two options rawQuery should look like
+//  /  // rawQuery("SELECT id, name FROM people WHERE name = ? AND id = ?", new String[] {"David", "2"});
+//   / // OUTPUT: arraylist - number of elements accordingly
 //    public ArrayList<User> select(String column,String[] values)
 //    {
 //        database = getReadableDatabase(); // get access to read the database

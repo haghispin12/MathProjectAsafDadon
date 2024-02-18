@@ -93,19 +93,22 @@ ArrayList arr= new ArrayList<>();
             @Override
             public void onChanged(ArrayList<User> users) {
                 arr=users;
+                UserAdapter userAdapter = new UserAdapter(arr, new UserAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(User item) {
+
+                    }
+                });
+
+                rcShowUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
+                rcShowUsers.setAdapter(userAdapter);
+                rcShowUsers.setHasFixedSize(true);
+
+
             }
         });
 
-        UserAdapter userAdapter = new UserAdapter(arr, new UserAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(User item) {
 
-            }
-        });
-
-        rcShowUsers.setLayoutManager(new LinearLayoutManager(requireContext()));
-        rcShowUsers.setAdapter(userAdapter);
-        rcShowUsers.setHasFixedSize(true);
 
     }
 
