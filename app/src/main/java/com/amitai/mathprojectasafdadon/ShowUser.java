@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,9 @@ public class ShowUser extends Fragment {
 
 MainViewModel model;
 Uri uri;
+private TextView name;
+private TextView score;
+private TextView rate;
 private ImageView photo;
 private Button addPic;
 private Button addUser;
@@ -41,6 +45,9 @@ ArrayList arr= new ArrayList<>();
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_show_user, container, false);
+        name = view.findViewById(R.id.UserName);
+        score = view.findViewById(R.id.USerScore);
+        rate = view.findViewById(R.id.UserRate);
         photo = view.findViewById(R.id.photo);
         addPic =view.findViewById(R.id.addPic);
         addUser= view.findViewById(R.id.addUser);
@@ -65,6 +72,12 @@ ArrayList arr= new ArrayList<>();
                 }
             }
         });
+
+        name.setText(model.getUserName());
+        score.setText(model.getScore()+"");
+        rate.setText(model.getUserRate()+"");
+        model.useSelectAll(requireActivity());
+
 
 
 

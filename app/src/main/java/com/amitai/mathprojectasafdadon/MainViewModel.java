@@ -54,6 +54,17 @@ public class MainViewModel extends ViewModel {
         user=new User(name);
     }
 
+    public String getUserName(){
+        return user.getName();
+    }
+    public int getScore(){
+        return score;
+    }
+
+    public int getUserRate(){
+        return  user.getRate();
+    }
+
     public String getAnswer() {
         return answer;
     }
@@ -72,6 +83,11 @@ public class MainViewModel extends ViewModel {
 
         ArrayList<User> tmp = dbHelper.selectAll();
 
+        users.setValue(tmp);
+    }
+    public void useSelectAll(Context context){
+        DBHelper dbHelper= new DBHelper(context);
+        ArrayList<User> tmp = dbHelper.selectAll();
         users.setValue(tmp);
     }
 }

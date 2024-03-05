@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:hint="name"
             android:textSize="25sp"
+            android:id="@+id/UserName"
         />
 
         <TextView
@@ -30,6 +31,7 @@
             android:hint="score"
             android:layout_marginLeft="10dp"
             android:textSize="20sp"
+            android:id="@+id/USerScore"
             />
 
         <TextView
@@ -38,6 +40,7 @@
             android:hint="rate"
             android:layout_marginLeft="10dp"
             android:textSize="20sp"
+            android:id="@+id/UserRate"
             />
 
 </LinearLayout>
