@@ -3,6 +3,7 @@ package com.amitai.mathprojectasafdadon;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,6 +36,7 @@ import java.util.ArrayList;
 
 public class ShowUser extends Fragment {
 
+
 MainViewModel model;
 Uri uri;
 private TextView name;
@@ -41,6 +47,9 @@ private Button addPic;
 private Button addUser;
 private RecyclerView rcShowUsers;
 ArrayList arr= new ArrayList<>();
+    private MenuItem itemDelete;
+    private MenuItem itemEdit;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +65,19 @@ ArrayList arr= new ArrayList<>();
         return  view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_meue,menu);
+        itemDelete = menu.findItem(R.id.action_delete);
+        itemDelete.setVisible(false);
+        itemEdit = menu.findItem(R.id.action_edit);
+        itemEdit.setVisible(false);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
     public void main(){
+        setHasOptionsMenu(true);
 
 
 
