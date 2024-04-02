@@ -80,9 +80,7 @@ public class MainViewModel extends ViewModel {
     public void insertUser(Context context){
         DBHelper dbHelper= new DBHelper(context);
         dbHelper.insert(user, context);
-
         ArrayList<User> tmp = dbHelper.selectAll();
-
         users.setValue(tmp);
     }
     public void useSelectAll(Context context){
@@ -90,4 +88,12 @@ public class MainViewModel extends ViewModel {
         ArrayList<User> tmp = dbHelper.selectAll();
         users.setValue(tmp);
     }
+
+    public void useUpdate(Context context, User user){
+        DBHelper dbHelper = new DBHelper(context);
+        dbHelper.update(user);
+        ArrayList<User> tmp = dbHelper.selectAll();
+        users.setValue(tmp);
+    }
+
 }

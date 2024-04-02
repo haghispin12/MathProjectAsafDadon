@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         >
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="name"
@@ -25,7 +25,7 @@
             android:id="@+id/UserName"
         />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="score"
@@ -34,7 +34,7 @@
             android:id="@+id/USerScore"
             />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="rate"

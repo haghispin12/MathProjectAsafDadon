@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,13 +40,14 @@ public class ShowUser extends Fragment {
 
 MainViewModel model;
 Uri uri;
-private TextView name;
-private TextView score;
-private TextView rate;
+private EditText name;
+private EditText score;
+private EditText rate;
 private ImageView photo;
 private Button addPic;
 private Button addUser;
 private RecyclerView rcShowUsers;
+private User selectedUser;
 ArrayList arr= new ArrayList<>();
     private MenuItem itemDelete;
     private MenuItem itemEdit;
@@ -70,10 +72,29 @@ ArrayList arr= new ArrayList<>();
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_meue,menu);
         itemDelete = menu.findItem(R.id.action_delete);
-        itemDelete.setVisible(false);
+//        itemDelete.setVisible(false);
         itemEdit = menu.findItem(R.id.action_edit);
-        itemEdit.setVisible(false);
+//        itemEdit.setVisible(false);
         super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_delete:
+
+                //do something
+                return true;
+
+            case R.id.action_edit:
+                name.setText(selectedUser.getName());
+                score.setText(selectedUser.getScore()+"");
+                rate.setText(selectedUser.getRate()+"");
+                addUser.setText("update");
+                return true;
+        }
+        return false;
     }
 
     public void main(){
@@ -118,7 +139,15 @@ ArrayList arr= new ArrayList<>();
         addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model.insertUser(requireActivity());
+                if(addUser.getText().equals("add user"))
+                    model.insertUser(requireActivity());
+                else {
+                    selectedUser.setName(name.getText()+"");
+                    selectedUser.setScore(Integer.parseInt(score.getText().toString()));
+                    selectedUser.setRate(Integer.parseInt(rate.getText().toString()));
+                    model.useUpdate(requireActivity(), selectedUser);
+
+                }
             }
         });
 
@@ -130,7 +159,7 @@ ArrayList arr= new ArrayList<>();
                 UserAdapter userAdapter = new UserAdapter(arr, new UserAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(User item) {
-
+                        selectedUser=item;
                     }
                 });
 
