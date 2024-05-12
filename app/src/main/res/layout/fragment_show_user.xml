@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowUser"
+    tools:context=".mathproject.ShowUser"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:focusable="true"

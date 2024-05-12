@@ -3,28 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    tools:context=".mathproject.ShowUser">
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvUserName"
-        android:layout_weight="1"
-       android:gravity="center"
-        />
-
+    android:layout_height="150dp">
+    
+    
     <ImageView
-        android:id="@+id/ivUserImg"
+        android:id="@+id/ivCardImg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
-
-
-
-
-
-
+    
+    
 
 </LinearLayout>

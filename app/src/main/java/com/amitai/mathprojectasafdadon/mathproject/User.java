@@ -1,4 +1,4 @@
-package com.amitai.mathprojectasafdadon;
+package com.amitai.mathprojectasafdadon.mathproject;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

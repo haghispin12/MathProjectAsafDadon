@@ -1,4 +1,4 @@
-package com.amitai.mathprojectasafdadon;
+package com.amitai.mathprojectasafdadon.mathproject;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

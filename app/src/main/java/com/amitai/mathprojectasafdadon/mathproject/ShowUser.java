@@ -1,9 +1,7 @@
-package com.amitai.mathprojectasafdadon;
+package com.amitai.mathprojectasafdadon.mathproject;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.app.Activity;
-import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,7 +28,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.amitai.mathprojectasafdadon.R;
 
 import java.util.ArrayList;
 

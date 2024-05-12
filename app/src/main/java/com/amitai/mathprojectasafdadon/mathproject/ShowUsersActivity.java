@@ -1,4 +1,4 @@
-package com.amitai.mathprojectasafdadon;
+package com.amitai.mathprojectasafdadon.mathproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.amitai.mathprojectasafdadon.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.amitai.mathprojectasafdadon;
+package com.amitai.mathprojectasafdadon.mathproject;
 
 public class Fruit {
     private String name;

@@ -1,4 +1,4 @@
-package com.amitai.mathprojectasafdadon;
+package com.amitai.mathprojectasafdadon.mathproject;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,12 +12,8 @@ import android.provider.MediaStore;
 
 import androidx.annotation.Nullable;
 
-import com.amitai.mathprojectasafdadon.User;
-
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
