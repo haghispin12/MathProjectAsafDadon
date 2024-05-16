@@ -8,6 +8,7 @@ import java.util.Random;
 public class Card {
 private int num;
 private String shape;
+private boolean isHide=false;
 private int rc;
 public Card(){
     Random random=new Random();
@@ -134,4 +135,20 @@ public Card(){
     public int getBitmap() {
         return rc;
     }
+
+public int getNum(){
+    return num;
+}
+public String getShape(){
+    return shape;
+}
+
+public void setIsHide(boolean b){
+    isHide=b;
+}
+public boolean getIsHide(){
+    return isHide;
+}
+
+
 }

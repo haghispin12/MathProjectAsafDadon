@@ -43,7 +43,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
              ivCardImg=itemView.findViewById(R.id.ivCardImg);
          }
          public void bind(final Card item, final CardAdapter.OnitemClicklistener listener){
-             ivCardImg.setImageResource(item.getBitmap());
+             if (!item.getIsHide())
+                 ivCardImg.setImageResource(item.getBitmap());
+             else
+                 ivCardImg.setImageResource(R.drawable.background1);
              itemView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
@@ -54,3 +57,5 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
 
     }
 }
+
+
