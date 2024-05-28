@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "580252387542",
+    "project_id": "poker-asaf-dadon",
+    "storage_bucket": "poker-asaf-dadon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580252387542:android:01412529d8d28c88f82177",
+        "android_client_info": {
+          "package_name": "com.amitai.mathprojectasafdadon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8aCYti-wxckPKNT5JoOCYdFM9jc4I2og"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

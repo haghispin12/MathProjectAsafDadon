@@ -15,7 +15,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
  }
      private ArrayList<Card> cards;
      private OnitemClicklistener listener;
-     public CardAdapter(ArrayList<Card> cards, CardAdapter.OnitemClicklistener listener){
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public CardAdapter(ArrayList<Card> cards, CardAdapter.OnitemClicklistener listener){
          this.cards=cards;
          this.listener=listener;
  }
@@ -55,6 +60,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
              });
          }
 
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 }
 
