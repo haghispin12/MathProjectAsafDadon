@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,10 @@ private MViewModel mViewModel;
 CardAdapter cardAdapter;
 private TextView check;
 private int b=0;
+
+
+
+
 
 
 
@@ -43,20 +50,22 @@ ArrayList<Card> tmp=new ArrayList<Card>();
             rcShowCards2 = findViewById(R.id.rcShowCards2);
             rcShowCards3 = findViewById(R.id.rcShowCards3);
 
-            mViewModel.hand1.observe(this, new Observer<ArrayList<Card>>() {
-                @Override
-                public void onChanged(ArrayList<Card> cards) {
-                    cardAdapter = new CardAdapter(cards, new CardAdapter.OnitemClicklistener() {
-                        @Override
-                        public void onItemClick(Card item) {
 
-                        }
-                    });
-                    rcShowCards1.setLayoutManager(new LinearLayoutManager(MyGameActivity.this, RecyclerView.HORIZONTAL, false));
-                    rcShowCards1.setAdapter(cardAdapter);
-                    rcShowCards1.setHasFixedSize(true);
-                }
-            });
+
+                mViewModel.hand1.observe(this, new Observer<ArrayList<Card>>() {
+                    @Override
+                    public void onChanged(ArrayList<Card> cards) {
+                        cardAdapter = new CardAdapter(cards, new CardAdapter.OnitemClicklistener() {
+                            @Override
+                            public void onItemClick(Card item) {
+
+                            }
+                        });
+                        rcShowCards1.setLayoutManager(new LinearLayoutManager(MyGameActivity.this, RecyclerView.HORIZONTAL, false));
+                        rcShowCards1.setAdapter(cardAdapter);
+                        rcShowCards1.setHasFixedSize(true);
+                    }
+                });
             mViewModel.deck.observe(this, new Observer<ArrayList<Card>>() {
                 @Override
                 public void onChanged(ArrayList<Card> cards) {

@@ -74,11 +74,8 @@ public boolean isRechef(ArrayList<Card> arrayList, int first, int count){
                     return true;
                 if (isRechef(arrayList,arrayList.get(i).getNum(),count))
                     return true;
-            }
-        }
-        return false;
-        }
-
+            }}
+        return false;}
 public boolean isColor(ArrayList<Card> arrayList){
         int diamond=0;
         int clubs=0;
@@ -106,8 +103,7 @@ public boolean isColor(ArrayList<Card> arrayList){
                     return true;
             }
         }
-        return false;
-}
+        return false;}
 
 public int isFour(ArrayList<Card> arrayList){
         int count=1;

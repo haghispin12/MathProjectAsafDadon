@@ -25,12 +25,6 @@
         android:layout_gravity="center"
         />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        >-->
-    ///
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcShowCards3"
         android:layout_width="200dp"
@@ -39,10 +33,19 @@
         tools:listitem="@layout/activity_show_users"
         android:layout_gravity="center"
         />
-       <TextView
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="bet"
+        />
+
+    <TextView
            android:layout_width="wrap_content"
            android:layout_height="0dp"
-           android:layout_weight="1"
+           android:layout_weight="0.5"
            android:text="fold"
 
            />
