@@ -131,24 +131,43 @@ public Card(){
             rc=R.drawable.clubs_one;
     }
 }
+public Card(int num, String shape, boolean isHide, int rc){
+    this.num=num;
+    this.shape=shape;
+    this.isHide=isHide;
+    this.rc=rc;
+}
 
-    public int getBitmap() {
+    public int getRc() {
         return rc;
     }
 
-public int getNum(){
+    public void setRc(int rc) {
+        this.rc = rc;
+    }
+
+    public int getNum(){
     return num;
 }
-public String getShape(){
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getShape(){
     return shape;
 }
 
-public void setIsHide(boolean b){
-    isHide=b;
-}
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
+
 public boolean getIsHide(){
     return isHide;
 }
 
 
+    public void setIsHide(boolean hide) {
+        isHide = hide;
+    }
 }

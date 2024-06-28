@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
  public interface OnitemClicklistener {
@@ -49,7 +50,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
          }
          public void bind(final Card item, final CardAdapter.OnitemClicklistener listener){
              if (!item.getIsHide())
-                 ivCardImg.setImageResource(item.getBitmap());
+                 ivCardImg.setImageResource(item.getRc());
              else
                  ivCardImg.setImageResource(R.drawable.background1);
              itemView.setOnClickListener(new View.OnClickListener() {

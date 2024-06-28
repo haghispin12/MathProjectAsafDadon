@@ -60,8 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful())
                                     Toast.makeText(LoginActivity.this, "Registration success.", Toast.LENGTH_SHORT).show();
-                                else
-                                    Toast.makeText(LoginActivity.this, "Registration failed.", Toast.LENGTH_SHORT).show();
                             }
                         });
             }

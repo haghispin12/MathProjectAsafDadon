@@ -28,6 +28,7 @@
         android:hint="your code"
         android:textAlignment="center"
         android:id="@+id/code"
+        android:text=""
         />
 
 

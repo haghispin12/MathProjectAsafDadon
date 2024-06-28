@@ -7,16 +7,21 @@ public class GameManeger {
     private String player1;
     private String player2;
     private boolean mode;
-    private ArrayList<Card> cards;
     private int money1;
     private int money2;
-    public GameManeger(String id, String player1, boolean mode){
+    private ArrayList<Card> hand1;
+    private ArrayList<Card> hand2;
+    private ArrayList<Card> deck;
+    public GameManeger(String id, String player1, boolean mode, ArrayList<Card> hand1, ArrayList<Card> hand2, ArrayList<Card> deck){
         this.id=id;
         this.player1=player1;
         this.mode=mode;
         player2="";
         money1=1000;
         money2=1000;
+        this.hand1=hand1;
+        this.hand2=hand2;
+        this.deck=deck;
     }
 
     public String getPlayer1() {
@@ -51,14 +56,6 @@ public class GameManeger {
         this.mode = mode;
     }
 
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
-    }
-
     public int getMoney1() {
         return money1;
     }
@@ -73,5 +70,29 @@ public class GameManeger {
 
     public void setMoney2(int money2) {
         this.money2 = money2;
+    }
+
+    public ArrayList<Card> getHand1() {
+        return hand1;
+    }
+
+    public void setHand1(ArrayList<Card> hand1) {
+        this.hand1 = hand1;
+    }
+
+    public ArrayList<Card> getHand2() {
+        return hand2;
+    }
+
+    public void setHand2(ArrayList<Card> hand2) {
+        this.hand2 = hand2;
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
     }
 }
