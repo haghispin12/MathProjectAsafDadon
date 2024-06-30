@@ -95,5 +95,10 @@ public class MainViewModel extends ViewModel {
         ArrayList<User> tmp = dbHelper.selectAll();
         users.setValue(tmp);
     }
-
+    public void deleteById(Context context, long id){
+        DBHelper dbHelper = new DBHelper(context);
+        dbHelper.deleteById(id);
+        ArrayList<User> tmp = dbHelper.selectAll();
+        users.setValue(tmp);
+    }
 }

@@ -82,7 +82,7 @@ ArrayList arr= new ArrayList<>();
         int id = item.getItemId();
         switch (id) {
             case R.id.action_delete:
-
+                model.deleteById(requireActivity(), selectedUser.getId());
                 //do something
                 return true;
 
@@ -91,6 +91,7 @@ ArrayList arr= new ArrayList<>();
                 score.setText(selectedUser.getScore()+"");
                 rate.setText(selectedUser.getRate()+"");
                 addUser.setText("update");
+                model.useUpdate(requireActivity(), selectedUser);
                 return true;
         }
         return false;

@@ -90,12 +90,12 @@ public class DBHelper extends SQLiteOpenHelper {
 //
 //    }
 //
-//    public void deleteById(long id )
-//    {
-//        database = getWritableDatabase(); // get access to write e data
-//        database.delete(TABLE_RECORD, COLUMN_ID + " = " + id, null);
-//        database.close(); // close the database
-//    }
+    public void deleteById(long id )
+    {
+        database = getWritableDatabase(); // get access to write e data
+        database.delete(TABLE_RECORD, COLUMN_ID + " = " + id, null);
+        database.close(); // close the database
+    }
 //
 //    // update a specific user
     public void update(User user)

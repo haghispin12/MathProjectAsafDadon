@@ -9,6 +9,9 @@ public class GameManeger {
     private boolean mode;
     private int money1;
     private int money2;
+    private int player1Bet;
+    private int player2Bet;
+    private boolean isTheSecondBet;
     private ArrayList<Card> hand1;
     private ArrayList<Card> hand2;
     private ArrayList<Card> deck;
@@ -19,6 +22,9 @@ public class GameManeger {
         player2="";
         money1=1000;
         money2=1000;
+        player1Bet=0;
+        player2Bet=0;
+        isTheSecondBet=false;
         this.hand1=hand1;
         this.hand2=hand2;
         this.deck=deck;
@@ -68,8 +74,22 @@ public class GameManeger {
         return money2;
     }
 
-    public void setMoney2(int money2) {
-        this.money2 = money2;
+    public void setMoney2(int money2) { this.money2 = money2; }
+
+    public int getPlayer1Bet() { return player1Bet; }
+
+    public void setPlayer1Bet(int player1Bet) { this.player1Bet = player1Bet; }
+
+    public int getPlayer2Bet() { return player2Bet; }
+
+    public void setPlayer2Bet(int player2Bet) { this.player2Bet = player2Bet; }
+
+    public boolean isTheSecondBet() {
+        return isTheSecondBet;
+    }
+
+    public void setTheSecondBet(boolean theSecondBet) {
+        isTheSecondBet = theSecondBet;
     }
 
     public ArrayList<Card> getHand1() {

@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -13,15 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.units.qual.C;
@@ -37,25 +43,28 @@ private MViewModel mViewModel;
 CardAdapter cardAdapter;
     private TextView check;
     private TextView bet;
+    EditText enterMoney;
     private TextView fold;
     private TextView money;
     private TextView opponentMoney;
     private TextView opponentBet;
-    private DocumentSnapshot documentSnapshot;
-    private String documentId;
-    private DocumentReference documentReference;
+    private boolean isYourTurn;
 
 
 
 
 
-ArrayList<Card> tmp=new ArrayList<Card>();
+
+
+
+    ArrayList<Card> tmp=new ArrayList<Card>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_game);
         check=findViewById(R.id.check);
         bet=findViewById(R.id.bet);
+        enterMoney=findViewById(R.id.enterMoney);
         fold=findViewById(R.id.fold);
         money=findViewById(R.id.money);
         opponentMoney=findViewById(R.id.opponentMoney);
@@ -146,28 +155,57 @@ ArrayList<Card> tmp=new ArrayList<Card>();
                     rcShowCards3.setHasFixedSize(true);
                 }
             });
-            String moneyNum=(String) getIntent().getStringExtra("money");
-            String otherMoneyNum=(String) getIntent().getStringExtra("otherMoney");
+            String nameYourBet=(String) getIntent().getStringExtra("bet");
+            String nameOtherBet=(String) getIntent().getStringExtra("otherBet");
+            String moneyName=(String) getIntent().getStringExtra("money");
+            String otherMoneyName=(String) getIntent().getStringExtra("otherMoney");
             String code=(String) getIntent().getStringExtra("code");
-            FirebaseFirestore.getInstance().collection("games").whereEqualTo("id",code).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            isYourTurn=(boolean) getIntent().getBooleanExtra("isYourTurn", false);
+            if (isYourTurn)
+                Toast.makeText(MyGameActivity.this,"you go first",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(MyGameActivity.this,"opponent start",Toast.LENGTH_SHORT).show();
+            mViewModel.giveData(nameYourBet,nameOtherBet,moneyName,otherMoneyName,code, isYourTurn);
+
+
+            bet.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
-                    documentId = documentSnapshot.getId();
-                    documentReference = FirebaseFirestore.getInstance().collection("games").document(documentId);
+                public void onClick(View view) {
+                    if (isYourTurn) {
+                        int betMoney = Integer.parseInt(enterMoney.getText().toString());
+                        mViewModel.uptadeMoney(-betMoney);
+                        int totalBet = mViewModel.updateBet(betMoney);
+                        bet.setText("bet:" + totalBet);
+                        Toast.makeText(MyGameActivity.this, mViewModel.getMessage() + "", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(MyGameActivity.this,"you can not do this in the opponent turn", Toast.LENGTH_SHORT).show();
                 }
             });
-
-
-
-
-
 
             check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tmp = cardAdapter.getCards();
-                    mViewModel.isHide();
+                    if (isYourTurn) {
+                        mViewModel.updateBet(0);
+                        Toast.makeText(MyGameActivity.this, mViewModel.getMessage() + "", Toast.LENGTH_SHORT).show();
+//                        tmp = cardAdapter.getCards();
+//                        mViewModel.isHide();
+                    }
+                    else
+                        Toast.makeText(MyGameActivity.this,"you can not do this in the opponent turn", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            fold.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (isYourTurn){
+
+
+                    }
+                    else
+                        Toast.makeText(MyGameActivity.this,"you can not do this in the opponent turn", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -175,7 +213,24 @@ ArrayList<Card> tmp=new ArrayList<Card>();
                 @Override
                 public void onChanged(Integer integer) {
                     money.setText("money:"+integer);
-                    documentReference.update(moneyNum,integer);
+                }
+            });
+            mViewModel.hisMoney.observe(this, new Observer<Long>() {
+                @Override
+                public void onChanged(Long aLong) {
+                    money.setText("opponent money:" + aLong);
+                }
+            });
+            mViewModel.hisBet.observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(Integer integer) {
+                    opponentBet.setText("opponent bet:"+integer);
+                }
+            });
+            mViewModel.isYourTurn.observe(this, new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean aBoolean) {
+                    isYourTurn=aBoolean;
                 }
             });
 

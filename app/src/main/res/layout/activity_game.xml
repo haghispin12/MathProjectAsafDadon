@@ -30,6 +30,15 @@
         android:id="@+id/code"
         android:text=""
         />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enterCode"
+        android:textAlignment="center"
+        android:id="@+id/enterCode"
+        android:text=""
+        android:visibility="gone"
+        />
 
 
 

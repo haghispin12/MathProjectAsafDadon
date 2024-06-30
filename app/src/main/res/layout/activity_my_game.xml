@@ -69,6 +69,13 @@
             android:textSize="30dp"
             android:id="@+id/money"
             />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:hint="enter money"
+            android:id="@+id/enterMoney"
+            />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

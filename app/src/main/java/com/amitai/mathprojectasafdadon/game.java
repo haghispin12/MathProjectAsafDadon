@@ -87,22 +87,26 @@ private Card tmpCard;
                     documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                         @Override
                         public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                            ArrayList<Map> tmpHand1=(ArrayList<Map>) value.get("hand1");
-                            ArrayList<Map> tmpHand2=(ArrayList<Map>) value.get("hand2");
-                            ArrayList<Map> tmpDeck=(ArrayList<Map>) value.get("deck");
+
                             if (error!=null){
                                 Log.w("Firestore", "fail", error);
                                 return;
                             }
                             if (value!=null && value.exists()){
                                 if(value.getBoolean("mode")){
+                                    ArrayList<Map> tmpHand1=(ArrayList<Map>) value.get("hand1");
+                                    ArrayList<Map> tmpHand2=(ArrayList<Map>) value.get("hand2");
+                                    ArrayList<Map> tmpDeck=(ArrayList<Map>) value.get("deck");
                                     Intent intent=new Intent(com.amitai.mathprojectasafdadon.game.this,MyGameActivity.class);
                                     intent.putExtra("hand1",tmpHand1);
                                     intent.putExtra("hand2",tmpHand2);
                                     intent.putExtra("deck",tmpDeck);
                                     intent.putExtra("code", code);
+                                    intent.putExtra("bet","player1Bet");
+                                    intent.putExtra("otherBet","player2Bet");
                                     intent.putExtra("money","money1");
                                     intent.putExtra("otherMoney","money2");
+                                    intent.putExtra("isYourTurn",true);
                                     startActivity(intent);
                                 }
                             }
@@ -155,8 +159,11 @@ private Card tmpCard;
                             intent.putExtra("hand2",tmpHand2);
                             intent.putExtra("deck",tmpDeck);
                             intent.putExtra("code", code);
+                            intent.putExtra("bet","player2Bet");
+                            intent.putExtra("otherBet","player1Bet");
                             intent.putExtra("money","money2");
                             intent.putExtra("otherMoney","money1");
+                            intent.putExtra("isYourTurn",false);
                             startActivity(intent);
                         }
                     }
